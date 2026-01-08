@@ -1,1 +1,1 @@
-# BradleySMP
+# AtlasSMP
