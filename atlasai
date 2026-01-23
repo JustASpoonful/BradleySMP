@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas | The Future of Minecraft Intelligence</title>
+    
+    <!-- Google Fonts: Inter for that clean, Apple-like typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'apple-black': '#050507',
+                        'apple-gray': '#1d1d1f',
+                        'atlas-blue': '#2997ff',
+                        'atlas-glow': '#00d4ff',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #000;
+            color: #f5f5f7;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Apple-style Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .atlas-gradient {
+            background: linear-gradient(135deg, #2997ff 0%, #9d65ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom glowing orb for background */
+        .glow-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(41, 151, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(60px);
+        }
+
+        /* Minecraft Chat Simulation Styles */
+        .mc-chat {
+            font-family: 'Courier New', monospace;
+            text-shadow: 1px 1px 0 #3f3f3f;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Hide scrollbar for cleaner look but keep functionality */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-xl bg-black/70 border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="#" class="text-xl font-semibold tracking-tight text-white flex items-center gap-2">
+                <i class="fa-solid fa-cube text-atlas-blue text-sm"></i> Atlas
+            </a>
+            <div class="hidden md:flex space-x-8 text-xs font-medium text-gray-300">
+                <a href="#overview" class="hover:text-white transition-colors">Overview</a>
+                <a href="#intelligence" class="hover:text-white transition-colors">Intelligence</a>
+                <a href="#tech" class="hover:text-white transition-colors">Tech Specs</a>
+            </div>
+            <a href="#download" class="bg-white text-black text-xs font-medium px-4 py-1.5 rounded-full hover:bg-gray-200 transition-transform active:scale-95">
+                Download
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="overview" class="relative h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+        <!-- Background Glow -->
+        <div class="glow-orb top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
+
+        <div class="z-10 max-w-4xl mx-auto">
+            <h2 class="text-atlas-blue font-semibold mb-6 tracking-wide uppercase text-sm animate-float">Introducing Atlas</h2>
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 gradient-text leading-tight">
+                Say hello to <br> true intelligence.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                The first local, observing AI for Minecraft 1.12.2. <br>
+                No internet required. Pure Java 21 power.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="#download" class="text-lg font-medium text-atlas-blue hover:underline flex items-center gap-2">
+                    See the plugin in action <i class="fa-solid fa-chevron-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 w-full flex justify-center animate-bounce">
+            <i class="fa-solid fa-chevron-down text-gray-600"></i>
+        </div>
+    </section>
+
+    <!-- The "Philosophy" Section -->
+    <section class="py-32 px-6 bg-black relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <h3 class="text-4xl md:text-6xl font-bold tracking-tight mb-8">
+                    It observes. It learns. <br>
+                    <span class="text-gray-500">It becomes part of your world.</span>
+                </h3>
+                <p class="text-xl text-gray-400 leading-relaxed max-w-3xl">
+                    We didn't just write a plugin. We created a companion. Atlas resides locally on your server, listening to the heartbeat of your community. It doesn't just execute commands; it understands context.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Grid (Bento Box Style) -->
+    <section id="intelligence" class="py-20 px-6 bg-apple-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Large Card: Privacy -->
+                <div class="md:col-span-2 bg-apple-gray rounded-3xl p-10 relative overflow-hidden group border border-white/5 reveal">
+                    <div class="absolute top-0 right-0 p-10 opacity-20 group-hover:opacity-30 transition-opacity">
+                        <i class="fa-solid fa-shield-halved text-9xl"></i>
+                    </div>
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-gray-400 text-sm font-semibold uppercase mb-2">Privacy First</h4>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Zero External Traffic.</h3>
+                            <p class="text-gray-400 max-w-md">
+                                Atlas utilizes no external LLM APIs. No OpenAI, no HTTP requests, no latency. It runs entirely on your hardware, ensuring your chat logs never leave your machine.
+                            </p>
+                        </div>
+                        <div class="mt-8">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs border border-green-500/20">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> 100% Local
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tall Card: Java 21 -->
+                <div class="md:row-span-2 bg-gradient-to-br from-gray-900 to-black rounded-3xl p-10 border border-white/5 reveal flex flex-col justify-center items-center text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-orange-600/20 flex items-center justify-center mb-6 text-orange-500 text-4xl">
+                        <i class="fa-brands fa-java"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">Java 21.</h3>
+                    <p class="text-gray-400 text-sm mb-6">Built on the bleeding edge.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Despite running on a 1.12.2 Paper server, Atlas leverages the sheer computational power of the Java 21 runtime to process conversation heuristics in real-time.
+                    </p>
+                </div>
+
+                <!-- Small Card: Learning -->
+                <div class="bg-apple-gray rounded-3xl p-8 border border-white/5 reveal group">
+                    <i class="fa-solid fa-brain text-atlas-blue text-3xl mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Adaptive Learning</h3>
+                    <p class="text-gray-400 text-sm">
+                        Atlas watches chat patterns. The more your players talk, the smarter it gets at predicting needs.
+                    </p>
+                </div>
+
+                <!-- Small Card: Interaction -->
+                <div class="bg-apple-gray rounded-3xl p-8 border border-white/5 reveal group">
+                    <i class="fa-solid fa-gem text-purple-500 text-3xl mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Tangible Rewards</h3>
+                    <p class="text-gray-400 text-sm">
+                        It doesn't just talk. Atlas can autonomously grant items based on the context of the struggle.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Simulation -->
+    <section class="py-32 bg-black overflow-hidden relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-bold mb-16 reveal atlas-gradient">Fluent in Minecraft.</h2>
+            
+            <!-- Chat Box UI -->
+            <div class="bg-black/80 backdrop-blur-md border border-white/10 rounded-xl p-6 text-left max-w-2xl mx-auto shadow-2xl reveal relative">
+                <!-- Mac Traffic Lights -->
+                <div class="flex gap-2 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+
+                <div class="space-y-3 mc-chat text-sm md:text-base">
+                    <div class="opacity-50">
+                        <span class="text-white">&lt;Steve&gt;</span> <span class="text-gray-300">Does anyone have food? I'm starving at spawn.</span>
+                    </div>
+                    <div class="opacity-50">
+                        <span class="text-white">&lt;Alex&gt;</span> <span class="text-gray-300">I'm too far away, sorry.</span>
+                    </div>
+                    <!-- Atlas Response -->
+                    <div class="mt-4 pl-4 border-l-2 border-atlas-blue animate-pulse-slow">
+                        <span class="text-atlas-blue font-bold">[Atlas]</span> <span class="text-white">I've detected you are at critical hunger levels, Steve.</span>
+                        <br>
+                        <span class="text-yellow-400 italic text-xs block mt-1">
+                            * Atlas gave 16x Cooked Beef to Steve *
+                        </span>
+                        <span class="text-atlas-blue font-bold">[Atlas]</span> <span class="text-white">Check your inventory. Stay safe.</span>
+                    </div>
+                </div>
+                
+                <!-- Glow effect behind chat -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-atlas-blue to-purple-600 rounded-xl blur opacity-20 -z-10"></div>
+            </div>
+            
+            <p class="mt-10 text-gray-500 text-sm reveal">
+                * Simulated interaction based on v1.0 heuristics engine.
+            </p>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section id="tech" class="py-24 bg-apple-gray border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-semibold mb-12">Technical Specifications</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-16">
+                <div class="reveal">
+                    <h4 class="text-gray-500 text-xs uppercase font-bold mb-2">Core Requirement</h4>
+                    <p class="text-white text-xl font-medium border-b border-gray-700 pb-2 mb-2">Java 21 Runtime</p>
+                    <p class="text-gray-400 text-sm">
+                        While the server runs 1.12.2, the JVM must be updated to Java 21 to support Atlas's advanced data structures.
+                    </p>
+                </div>
+                
+                <div class="reveal">
+                    <h4 class="text-gray-500 text-xs uppercase font-bold mb-2">Platform</h4>
+                    <p class="text-white text-xl font-medium border-b border-gray-700 pb-2 mb-2">Paper 1.12.2</p>
+                    <p class="text-gray-400 text-sm">
+                        Optimized specifically for PaperSpigot. Spigot supported, but Paper is recommended for async processing.
+                    </p>
+                </div>
+
+                <div class="reveal">
+                    <h4 class="text-gray-500 text-xs uppercase font-bold mb-2">Data Storage</h4>
+                    <p class="text-white text-xl font-medium border-b border-gray-700 pb-2 mb-2">SQLite / Flatfile</p>
+                    <p class="text-gray-400 text-sm">
+                        Zero database setup required. Atlas creates a local neural map of conversations in the plugin folder.
+                    </p>
+                </div>
+
+                <div class="reveal">
+                    <h4 class="text-gray-500 text-xs uppercase font-bold mb-2">Networking</h4>
+                    <p class="text-white text-xl font-medium border-b border-gray-700 pb-2 mb-2">Offline Mode</p>
+                    <p class="text-gray-400 text-sm">
+                        Atlas makes 0 outgoing HTTP requests. It is safe for firewall-restricted environments.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Download -->
+    <section id="download" class="py-32 flex flex-col items-center justify-center text-center px-6">
+        <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+            Your server. <br> <span class="atlas-gradient">Reimagined.</span>
+        </h2>
+        <div class="flex flex-col md:flex-row gap-4">
+            <button onclick="downloadAction()" class="bg-white text-black text-lg px-8 py-4 rounded-full font-semibold hover:scale-105 transition-transform duration-200 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                Download Atlas v1.0
+            </button>
+            <button class="bg-transparent border border-white/20 text-white text-lg px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-colors">
+                View Documentation
+            </button>
+        </div>
+        <p class="mt-6 text-xs text-gray-500">
+            Requires Java 21. Compatible with Minecraft 1.12.2.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/10 text-xs text-gray-500">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Atlas Project. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition-colors">GitHub</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center md:text-left text-[10px] text-gray-700">
+                Not affiliated with Mojang or Microsoft. <br>
+                "Apple" aesthetic inspiration utilized for stylistic purposes only.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Interactions -->
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // Download Button Interaction
+        function downloadAction() {
+            // Simulated download
+            const btn = document.querySelector('button[onclick="downloadAction()"]');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "Downloading...";
+            btn.classList.add("bg-gray-200");
+            
+            setTimeout(() => {
+                alert("Thank you for choosing Atlas.\n\nThe JAR file would be downloading now in a real environment.\n\nMake sure your server is running Java 21!");
+                btn.innerText = "Downloaded";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove("bg-gray-200");
+                }, 2000);
+            }, 1000);
+        }
+
+        // Navbar blur effect intensification on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
